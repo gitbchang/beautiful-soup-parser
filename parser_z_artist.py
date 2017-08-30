@@ -6,6 +6,10 @@ Tutorial Link: https://www.digitalocean.com/community/tutorials/how-to-scrape-we
 """
 import requests
 from bs4 import BeautifulSoup
+import csv
+
+f = csv.write(open('z-artist-names.csv', 'w'))
+f.writerow(['Name', 'Link'])
 
 # collect first page of artists' list
 page = requests.get('https://www.nga.gov/collection/anZ1.htm')
@@ -24,7 +28,13 @@ artist_name_list_items = artist_name_list.find_all('a')
 
 for artist_name in artist_name_list_items:
     # print(artist_name.prettify())
-    print(artist_name.text)
+    # print(artist_name.text)
+    names = artist_name.contents[0]
+    base_url = 'https://www.nga.gov'
+    links = base_url + artist_name.get('href')
+    f.writerow([names, links])
+    print(names)
+    print(links)
 
 
 

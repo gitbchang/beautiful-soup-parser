@@ -11,6 +11,8 @@ import csv
 f = csv.write(open('z-artist-names.csv', 'w'))
 f.writerow(['Name', 'Link'])
 
+pages = []
+
 # collect first page of artists' list
 page = requests.get('https://www.nga.gov/collection/anZ1.htm')
 

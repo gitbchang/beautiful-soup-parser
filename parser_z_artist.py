@@ -14,6 +14,12 @@ f.writerow(['Name', 'Link'])
 pages = []
 NGA_BASE_URL = 'https://www.nga.gov/collection/anZ'
 
+# BE CONSIDERATE USE A HEADER
+headers = {
+    'User-Agent': 'John Doe, notreal.com',
+    'From': 'anyemail@example.com'
+}
+
 for i in range(1, 6):
     url = NGA_BASE_URL + str(i) + '.htm'
     pages.append(url)
@@ -21,6 +27,7 @@ for i in range(1, 6):
 for page_url in pages:
     # collect first page of artists' list
     page = requests.get(page_url)
+    # page = request.get(page_url, headers = headers)
 
     # Create a beautiful soup object
     soup = BeautifulSoup(page.text, 'html.parser')

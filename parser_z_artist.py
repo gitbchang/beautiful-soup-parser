@@ -12,6 +12,11 @@ f = csv.write(open('z-artist-names.csv', 'w'))
 f.writerow(['Name', 'Link'])
 
 pages = []
+NGA_BASE_URL = 'https://www.nga.gov/collection/anZ'
+
+for i in range(1, 6):
+    url = NGA_BASE_URL + str(i) + '.htm'
+    pages.append(url)
 
 # collect first page of artists' list
 page = requests.get('https://www.nga.gov/collection/anZ1.htm')
